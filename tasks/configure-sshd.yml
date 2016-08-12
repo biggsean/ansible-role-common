@@ -1,0 +1,27 @@
+---
+# tasks to configure sshd
+- name: ensure no password logins via ssh
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+  notify:
+    - restart sshd
+  tags:
+    - common
+    - common_sshd
+
+
+- name: ensure no root logins via ssh
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+  notify:
+    - restart sshd
+  tags:
+    - common
+    - common_sshd
+
