@@ -1,0 +1,23 @@
+---
+# tasks to configure sudoers
+- name: ensure wheel is disabled
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: "^%wheel"
+    state: absent
+    validate: 'visudo -cf %s'
+  tags:
+    - common
+    - common_sudoers
+
+- name: ensure sudoers groups are in place
+  lineinfile:
+    dest: /etc/sudoers
+    line: "%{{ item.name }} ALL=(ALL) {{ item.nopassword | default(false)|ternary('NOPASSWD:','') }}ALL"
+    state: present
+    validate: 'visudo -cf %s'
+  with_items: "{{ common_sudoers_groups }}"
+  tags:
+    - common
+    - common_sudoers
+

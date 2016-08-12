@@ -20,3 +20,6 @@ common_root_password: ''
   #   groups: somegroup
   #   key: public key or location in github
 common_user_list: []
+
+common_sudoers_groups: []
+
