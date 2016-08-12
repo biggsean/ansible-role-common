@@ -15,3 +15,8 @@ common_iptables_udp_ports: []
 
 common_root_password: ''
 
+# common_user_list:
+  # - username: yourname
+  #   groups: somegroup
+  #   key: public key or location in github
+common_user_list: []

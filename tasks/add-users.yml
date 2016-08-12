@@ -1,0 +1,29 @@
+---
+# tasks to add users
+- name: ensure all user groups are in place
+  group:
+    name: "{{ item.1 }}"
+    state: present
+  with_subelements:
+    - "{{ common_user_list }}"
+    - groups
+
+- name: ensure users exist
+  user:
+    name: "{{ item.username }}"
+    groups: "{{ item.groups|join(',') }}"
+    state: present
+  with_items: "{{ common_user_list }}"
+  tags:
+    - common
+    - common_users
+
+- name: verify user ssh keys are in place
+  authorized_key:
+    user: "{{ item.username }}"
+    key: "{{ item.key }}"
+  with_items: "{{ common_user_list }}"
+  tags:
+    - common
+    - common_users
+

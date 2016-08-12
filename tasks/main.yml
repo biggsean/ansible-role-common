@@ -5,4 +5,5 @@
 - include: fail2ban.yml
 - include: configure-sshd.yml
 - include: change-root-password.yml
+- include: add-users.yml
 
