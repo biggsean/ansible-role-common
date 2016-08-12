@@ -1,0 +1,36 @@
+---
+# tasks for iptables
+- name: ensure iptables packages are installed
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - iptables
+    - iptables-services
+
+  tags:
+    - common
+    - common_iptables
+
+- name: configure iptables
+  template:
+    src: "{{ common_iptables_template }}"
+    dest: /etc/sysconfig/iptables-config
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+    - restart iptables
+  tags:
+    - common
+    - common_iptables
+
+- name: ensure iptables is running
+  service:
+    name: iptables
+    enabled: yes
+    state: started
+  tags:
+    - common
+    - common_iptables
+

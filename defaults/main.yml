@@ -9,3 +9,9 @@ common_fail2ban_destination: /etc/fail2ban/jail.d/00-common-role.local
 common_fail2ban_bantime: 3600
 common_fail2ban_banaction: iptables-multiport
 
+common_iptables_template: iptables-config.j2
+common_iptables_tcp_ports: [22]
+common_iptables_udp_ports: []
+
+
+
