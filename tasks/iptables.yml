@@ -15,7 +15,7 @@
 - name: configure iptables
   template:
     src: "{{ common_iptables_template }}"
-    dest: /etc/sysconfig/iptables-config
+    dest: /etc/sysconfig/iptables
     owner: root
     group: root
     mode: 0600
