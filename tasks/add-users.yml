@@ -7,6 +7,9 @@
   with_subelements:
     - "{{ common_user_list }}"
     - groups
+  tags:
+    - common
+    - common_users
 
 - name: ensure users exist
   user:
