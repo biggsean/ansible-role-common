@@ -13,5 +13,5 @@ common_iptables_template: iptables-config.j2
 common_iptables_tcp_ports: [22]
 common_iptables_udp_ports: []
 
-
+common_root_password: ''
 

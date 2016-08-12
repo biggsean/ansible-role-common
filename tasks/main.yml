@@ -3,4 +3,5 @@
 - include: yum-upgrades.yml
 - include: iptables.yml
 - include: fail2ban.yml
+- include: change-root-password.yml
 
