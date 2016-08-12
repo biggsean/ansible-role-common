@@ -1,0 +1,46 @@
+---
+# tasks file for common
+- name: ensure yum-cron is installed
+  yum:
+    name: yum-cron
+    state: present
+  register: __common_yum_cron
+  tags:
+    - common
+    - common_yum_cron
+
+- name: ensure yum-cron is configured to apply updates
+  lineinfile:
+    dest: /etc/yum/yum-cron.conf
+    state: present
+    regexp: "^apply_updates"
+    line: "apply_updates = yes"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - common
+    - common_yum_cron
+
+- name: ensure yum-cron is configured to apply updates
+  lineinfile:
+    dest: /etc/yum/yum-cron.conf
+    state: present
+    regexp: "^update_cmd"
+    line: "update_cmd = {{ common_yum_update_command }}"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - common
+    - common_yum_cron
+
+- name: ensure machine is up to date
+  yum:
+    name: "*"
+    state: latest
+  when: __common_yum_cron|changed
+  tags:
+    - common
+    - common_yum_upgrade
+

@@ -1,0 +1,11 @@
+---
+# defaults file for common
+
+common_yum_update_command: default
+
+common_fail2ban_template: fail2ban-jail.conf.j2
+common_fail2ban_destination: /etc/fail2ban/jail.d/00-common-role.local
+
+common_fail2ban_bantime: 3600
+common_fail2ban_banaction: iptables-multiport
+

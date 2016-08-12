@@ -1,0 +1,9 @@
+{{ ansible_managed | comment }}
+
+[DEFAULT]
+bantime = {{ common_fail2ban_bantime }}
+banaction = {{ common_fail2ban_banaction }}
+
+[sshd]
+enabled = true
+
